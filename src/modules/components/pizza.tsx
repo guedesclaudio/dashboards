@@ -65,21 +65,13 @@ function Pizza() {
     
   return (
     <Content>
-        <TotalText>
-            {/* <div>
-                {total ? `Total gasto até o momento ${total.f}`: loading}
-            </div> */}
-            <div>
-                Distribuição das despesas
-            </div>
-        </TotalText>
+        <TotalText>Distribuição das despesas</TotalText>
         <div  style={{width: 400}}>
-        <Pie 
-            data={dataChart}
-            width={20}
-        />
+          <Pie 
+              data={dataChart}
+              width={20}
+          />
         </div>
-        
     </Content>
   );
 }
@@ -87,11 +79,15 @@ function Pizza() {
 export default Pizza;
 
 const Content = styled.div`
-    width: 400px;
-    margin: 60px auto;
+    width: 100%;
+    margin: 30px;
     border-radius: 5px;
     background-color: #69696915;
     padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 const TotalText = styled.h1`
     font-family: 'Arial';

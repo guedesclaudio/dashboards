@@ -39,11 +39,12 @@ function TotalProgress() {
 export default TotalProgress;
 
 const Content = styled.div`
-    width: 400px;
-    margin: 60px auto;
+    width: 100%;
+    margin: 30px;
     border-radius: 5px;
     background-color: #69696915;
     padding: 15px;
+    box-sizing: border-box;
 `
 const TotalText = styled.h1`
     font-family: 'Arial';

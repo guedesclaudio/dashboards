@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { requests } from "../../api";
-import { styled } from "styled-components";
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -22,11 +19,3 @@ function Progress(props: LinearProgressProps & { value: number }) {
 }
 
 export default Progress;
-
-const Content = styled.div`
-    width: 300px;
-    margin: 60px auto;
-    border-radius: 5px;
-    background-color: #69696915;
-    padding: 15px;
-`;
