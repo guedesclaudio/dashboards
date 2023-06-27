@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { requests } from "../../api";
 import { styled } from "styled-components";
 import Modal from 'react-modal';
+import { generateReport } from "../../utils/generateReport";
+import { modalStyle } from "../../styles/modalStyle";
 
 function Report() {
     const loading = 'carregando dados ...';
@@ -15,7 +17,7 @@ function Report() {
     
       const handleSubmit = (event: any) => {
         event.preventDefault();
-        generateReport(data);
+        generateReport(data, texto);
         closeModal();
       };
 
@@ -26,33 +28,25 @@ function Report() {
     function closeModal() {
         setIsOpen(false);
     }
-
-    const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '300px',
-        },
-      };
   
     async function getData() {
-      const result = await requests.getData();
-      const totalBuilding = (result.table.rows[0].c[6]);
-      const estimatedTotal = result.table.rows[0].c[18];
-      const tax = Number(((totalBuilding.v / estimatedTotal.v) * 100).toFixed(2));
-      const totalMdo = result.table.rows[0].c[13];
-      const estimatedMdo = result.table.rows[0].c[19];
-      const taxMdo = Number(((totalMdo.v / estimatedMdo.v) * 100).toFixed(2));
-      const valueMeters = result.table.rows[0].c[9];
       let associationsDescription = '';
       const associations: any = {}
+      const result = await requests.getData();
+      const table = result.table.rows[0];
+      const totalBuilding = (table.c[6]);
+      const estimatedTotal = table.c[18];
+      const totalMdo = table.c[13];
+      const estimatedMdo = table.c[19];
+      const taxMdo = Number(((totalMdo.v / estimatedMdo.v) * 100).toFixed(2));
+      const tax = Number(((totalBuilding.v / estimatedTotal.v) * 100).toFixed(2));
+      const valueMeters = table.c[9];
+      
       result?.table?.rows?.map((value: any) => {
         if (!value?.c[15]?.v) return;
-        return associations[value?.c[15]?.v] = value?.c[16]?.f
+        const key = value?.c[15]?.v;
+        const keyFormat = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+        return associations[keyFormat] = value?.c[16]?.f;
       });
 
       for (let i = 0; i < Object.keys(associations).length; i++) {
@@ -68,36 +62,22 @@ function Report() {
         taxMdo,
         tax,
         valueMeters
-      }
+      };
       
       setData(finalData);
       return result;
     }
-
-    function generateReport(data: any): Window | null {
-        const report = `
-        Total gasto até o momento: ${data?.totalBuilding?.f}\nOrçamento estimado: ${data?.estimatedTotal?.f}\nOrçamento comprometido: ${data?.tax} %\n-----------------------------------------------\nTotal gasto com mão de obra: ${data?.totalMdo?.f}\nOrçamento estimado: ${data?.estimatedMdo?.f}\nOrçamento comprometido: ${data?.taxMdo} %\n-----------------------------------------------\nValor do metro quadrado: ${data?.valueMeters?.f}\n-----------------------------------------------\nDistribuição das despesas:\n${data?.associationsDescription}
-        `
-        const formatReport = encodeURIComponent(report);
-        const url = 'https://api.whatsapp.com/send?phone=' + `+55${texto}` + '&text=' + formatReport;
-        return window.open(url);
-    }
-
     useEffect(() => {
         getData();
     }, []);
   return (
     <>
-        <Button onClick={openModal}>
-            Relatório
-        </Button>
+        <Button onClick={openModal}>Relatório</Button>
         <div>
       <Modal
         isOpen={modalIsOpen}
-        //onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
+        style={modalStyle}
       >
         <Legend>Digite o número de telefone</Legend>
         <form onSubmit={handleSubmit}>
