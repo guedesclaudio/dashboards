@@ -3,6 +3,7 @@ import Pizza from "../components/pizza";
 import { slide as Menu } from 'react-burger-menu';
 import Progress from '../components/progress';
 import Box from '@mui/material/Box';
+import TotalProgress from "../components/progressTotal";
 
 
 function Home() {
@@ -22,9 +23,7 @@ function Home() {
         Acompanhe os seus gastos e gere relatórios
       </BoxText>
       <Pizza/>
-      <Box sx={{ width: '100%' }}>
-        <Progress value = {20}/>
-      </Box>
+      <TotalProgress/>
     </>
   );
 }

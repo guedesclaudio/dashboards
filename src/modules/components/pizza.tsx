@@ -8,32 +8,22 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function Pizza() {
     const loading = 'carregando dados ...';
     const [data, setData] = useState<any>(loading);
-    const [total, setTotal] = useState<any>(loading);
   
     async function getData() {
       const result = await requests.getData();
-      const totalBuilding = (result.table.rows[0].c[6]);
-      const totalMdo = (result.table.rows[0].c[12]);
+
       let associations: any = {}
       result?.table?.rows?.map((value: any, index: number) => {
-        console.log(value?.c[16]?.v)
+        
         if (!value?.c[15]?.v) return;
         return associations[value?.c[15]?.v] = value?.c[16]?.v
       });
-      //console.log(associations);
-      const totalDocs = (result.table.rows[0].c[16]);
-      const totalIron = (result.table.rows[1].c[16]);
-      const totalEletric = (result.table.rows[2].c[16]);
       
       const finalData = {
         ...associations,
       }
 
       setData(finalData);
-      setTotal(totalBuilding);
-      console.log(totalBuilding)
-      console.log(Object.keys(finalData))
-      console.log(Object.values(finalData))
       return result;
     }
 
