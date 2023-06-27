@@ -13,7 +13,6 @@ function Pizza() {
       const result = await requests.getData();
       const table = result.table.rows[0];;
       const MDO = table.c[13].v;
-      console.log(MDO)
       let associations: any = {}
       result?.table?.rows?.map((value: any, index: number) => {
         
@@ -71,12 +70,12 @@ function Pizza() {
   return (
     <Content>
         <TotalText>Distribuição das despesas</TotalText>
-        <div  style={{width: 400}}>
+        <BoxPizza>
           <Pie 
               data={dataChart}
               width={20}
           />
-        </div>
+        </BoxPizza>
     </Content>
   );
 }
@@ -99,4 +98,11 @@ const TotalText = styled.h1`
     font-size: 22px;
     padding-bottom: 20px;
     color: grey;
+`
+const BoxPizza = styled.div`
+  width: 500px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `

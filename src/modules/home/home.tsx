@@ -12,13 +12,13 @@ function Home() {
     <>
       <TopBar>
         <Title>Dashboards</Title>
-        <MenuHamburguer>
-          {/* <Menu width={200}>
+        {/* <MenuHamburguer>
+           <Menu width={200}>
             <Item id="home" className="menu-item" >Home</Item>
             <Item id="about" className="menu-item" >Materiais</Item>
             <Item id="contact" className="menu-item" >Mão de obra</Item>  
-          </Menu> */}
-        </MenuHamburguer>
+          </Menu> 
+        </MenuHamburguer> */}
       </TopBar> 
       <HomePage>
         <BoxText>
@@ -57,10 +57,7 @@ const HomePage = styled.div`
     width: 100%;
   }
 `;
-const MenuHamburguer = styled.div`
-  width: 30px;
-  background-color: red;
-`
+
 const BoxText = styled.h1`
   text-align: center;
   margin-top: 20px;
