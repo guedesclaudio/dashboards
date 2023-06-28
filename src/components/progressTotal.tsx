@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { requests } from "../../api";
+import { requests } from "../api";
 import { styled } from "styled-components";
 import Box from '@mui/material/Box';
 import Progress from "./progress";

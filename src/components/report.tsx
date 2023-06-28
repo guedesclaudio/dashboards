@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { requests } from "../../api";
+import { requests } from "../api";
 import { styled } from "styled-components";
 import Modal from 'react-modal';
-import { generateReport } from "../../utils/generateReport";
-import { modalStyle } from "../../styles/modalStyle";
+import { generateReport } from "../utils/generateReport";
+import { modalStyle } from "../styles/modalStyle";
+import { ModalLegend } from "../styles/legend-modal";
+import { ModalButtons } from "../styles/modal-button";
 
 function Report() {
     const loading = 'carregando dados ...';
@@ -79,13 +81,13 @@ function Report() {
         onRequestClose={closeModal}
         style={modalStyle}
       >
-        <Legend>Digite o número de telefone</Legend>
+        <ModalLegend>Digite o número de telefone</ModalLegend>
         <form onSubmit={handleSubmit}>
           <InputText placeholder="somente dígitos com DDD" value={texto} onChange={handleChange}/>
-          <Buttons>
+          <ModalButtons>
             <button onClick={closeModal}>cancelar</button>
             <button type="submit">enviar</button>
-          </Buttons>
+          </ModalButtons>
         </form>
       </Modal>
     </div>
@@ -98,8 +100,8 @@ export default Report;
 const Button = styled.button`
     text-align: center;
     margin-bottom: 30px;
-    width: 120px;
-    height: 30px;
+    width: 160px;
+    height: 40px;
     border-radius: 6px;
     box-shadow: 2px 2px 2px grey;
     border: none;
@@ -110,32 +112,6 @@ const Button = styled.button`
 
     &&:hover {
         filter: brightness(0.8);
-    }
-`;
-const Legend = styled.p`
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    color: grey;
-`
-const Buttons = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 20px;
-
-    && button {
-        width: 100px;
-        height: 30px;
-        border: none;
-        background-color: #c2bfbf;
-        color: white;
-        font-family: 'Arial';
-        font-size: 15px;
-        border-radius: 6px;
-        cursor: pointer;
     }
 `;
 const InputText = styled.input`
