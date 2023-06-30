@@ -51,4 +51,8 @@ const TotalText = styled.h1`
     font-size: 22px;
     padding-bottom: 20px;
     color: grey;
+
+    @media (max-width: 600px) {
+      font-size: 18px;
+  }
 `

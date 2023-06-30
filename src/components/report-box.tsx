@@ -11,7 +11,7 @@ function ReportBox(props: any) {
   function printPage() {
     setDisplayButton('none');
     setTimeout(() => window.print(), 100);
-    setTimeout(() => setDisplayButton('initial'), 150);
+    setTimeout(() => setDisplayButton('initial'), 1000);
   }
 
   return (

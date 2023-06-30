@@ -50,7 +50,7 @@ const HomePage = styled.div`
   align-items: center;
 
   @media (max-width: 600px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 const BoxText = styled.h1`
@@ -60,4 +60,8 @@ const BoxText = styled.h1`
   font-family: 'Arial';
   font-style: bold;
   color: grey;
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
