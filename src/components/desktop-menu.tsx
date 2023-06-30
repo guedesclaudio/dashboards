@@ -59,6 +59,10 @@ const Title = styled.h1`
   color: white;
   font-family: 'Arial';
   text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
 `
 const Link = styled.a`
   text-decoration: none;
