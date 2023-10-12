@@ -1,4 +1,7 @@
+import { storagePhoneNumber } from "./storagePhoneNumber";
+
 export function generateReport(data: any, phone: string): Window | null {
+    storagePhoneNumber.set(phone)
     const date = new Date();
     const day = date.getDate();
     const month = date.getMonth();

@@ -4,23 +4,28 @@ import { ModalButtons } from "../styles/modal-button";
 import { modalUtils } from '../utils/modalUtils';
 import styled from 'styled-components';
 import { modalStyle } from "../styles/modalStyle";
+import { storagePhoneNumber } from '../utils/storagePhoneNumber';
+let firstRender = true;
 
 export function ModalComponent({modalIsOpen, setIsOpen, handleSubmit, phoneNumber, handleChange}: any) {
-    return (
-        <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => modalUtils.closeModal(setIsOpen)}
-        style={modalStyle}>
-            <ModalLegend>Digite o número de telefone</ModalLegend>
-            <form onSubmit={handleSubmit}>
-            <InputText placeholder="somente dígitos com DDD" value={phoneNumber} onChange={handleChange} type='text' pattern="[0123456789]*" maxLength={11}/>
-            <ModalButtons>
-                <button onClick={() => modalUtils.closeModal(setIsOpen)}>cancelar</button>
-                <button type="submit">enviar</button>
-            </ModalButtons>
-            </form>
-        </Modal>
-    )
+  const phoneFromStorage = storagePhoneNumber.get();
+  if (phoneNumber.length > 0) firstRender = false;
+  
+  return (
+    <Modal
+    isOpen={modalIsOpen}
+    onRequestClose={() => modalUtils.closeModal(setIsOpen)}
+    style={modalStyle}>
+      <ModalLegend>Digite o número de telefone</ModalLegend>
+      <form onSubmit={handleSubmit}>
+        <InputText placeholder="somente dígitos com DDD" value={firstRender ? phoneFromStorage : phoneNumber} onChange={handleChange} type='text' pattern="[0123456789]*" maxLength={11}/>
+        <ModalButtons>
+          <button onClick={() => modalUtils.closeModal(setIsOpen)}>cancelar</button>
+          <button type="submit">enviar</button>
+        </ModalButtons>
+      </form>
+    </Modal>
+  )
 }
 
 const InputText = styled.input`   
