@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { requests } from "../api";
 import { styled } from "styled-components";
 import Box from '@mui/material/Box';
-import Progress from "./progress";
+import Progress from "./ProgressBar";
 
 function TotalProgress() {
     const loading = 'carregando dados ...';

@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
-import Pizza from "../../components/pizza";
-import TotalProgress from "../../components/progressTotal";
-import Report from "../../components/report";
+import Pizza from "../../components/PizzaChartExpenses";
+import TotalProgress from "../../components/TotalProgress";
+import Report from "../../components/Report";
 import Modal from 'react-modal';
 import { modalStyle } from "../../styles/modalStyle";
 import { useEffect, useState } from "react";
@@ -28,14 +28,12 @@ function Home() {
         <Report/>
         <Modal
         isOpen={modalIsOpen}
-        
-        style={modalStyle}
-      >
-        <ModalLegend>Dia de pagar mão de obra</ModalLegend>
-        <ModalButtons>
-          <button onClick={() => setIsOpen(false)}>fechar</button>
-        </ModalButtons>
-      </Modal>
+        style={modalStyle}>
+          <ModalLegend>Dia de pagar mão de obra</ModalLegend>
+          <ModalButtons>
+            <button onClick={() => setIsOpen(false)}>fechar</button>
+          </ModalButtons>
+        </Modal>
       </HomePage>
     </>
   );

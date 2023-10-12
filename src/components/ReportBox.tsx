@@ -1,14 +1,34 @@
 import { styled } from "styled-components";
 import { Content } from "../commom/styles/content";
 import { useState } from "react";
+import { generateMDOReport } from "../utils/generateMDOReport";
+import { modalUtils } from "../utils/modalUtils";
+import { generateReport } from "../utils/generateReport";
+import { ModalComponent } from "./Modal";
 
-function ReportBox(props: any) {
-  const { legend, data } = props.value;
-  const keys = Object.keys(data || {}) || [];
-  const values: any = Object.values(data || {}) || [];
+function ReportBox({legend, renderData, sendData}: any) {
+  const keys = Object.keys(renderData || {}) || [];
+  const values: any = Object.values(renderData || {}) || [];
   const [displayButton, setDisplayButton] = useState<string>('initial');
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
-  function printPage() {
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    if (legend.includes('Mão de obra')) {
+      generateMDOReport(sendData, phoneNumber, legend);
+    } else {
+      generateReport(sendData, phoneNumber);
+    }
+    
+    modalUtils.closeModal(setIsOpen);
+  };
+
+  const handleChange = (event: any) => {
+    setPhoneNumber(event.target.value);
+  };
+
+  const printPage = () => {
     setDisplayButton('none');
     setTimeout(() => window.print(), 100);
     setTimeout(() => setDisplayButton('initial'), 1000);
@@ -22,8 +42,17 @@ function ReportBox(props: any) {
           <Key>{key}</Key>
           <Value style={{color: values[index].split(" ").some((value: any) => value === "R$") ? "#5cf15c": "grey"}}>{values[index]}</Value>
         </Item>)}
-        <Button onClick={printPage} style = {{display: displayButton}}>Imprimir</Button>
+        <Buttons>
+          <Button onClick={printPage} style = {{display: displayButton}}>Imprimir</Button>
+          <Button onClick = {() => modalUtils.openModal(setIsOpen)} style = {{display: displayButton}}>Enviar</Button>
+        </Buttons>
       </Content>
+      <ModalComponent 
+        modalIsOpen={modalIsOpen}
+        setIsOpen={setIsOpen}
+        handleSubmit={handleSubmit}
+        phoneNumber={phoneNumber}
+        handleChange={handleChange}/>
     </ReportPage>
   );
 }
@@ -82,3 +111,9 @@ const Button = styled.button`
     color: white;
   }
 `;
+
+const Buttons = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+`

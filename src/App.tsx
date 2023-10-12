@@ -1,8 +1,8 @@
-import Home from './pages/home/home';
+import Home from './pages/home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import TopBar from './components/topbar';
-import MDOReport from './pages/reports/mdo-report';
-import GeneralReport from './pages/reports/general-report';
+import TopBar from './components/TopBar';
+import MDOReport from './pages/reports/MDOReport';
+import GeneralReport from './pages/reports/GeneralReport';
 
 function App() {
   return (

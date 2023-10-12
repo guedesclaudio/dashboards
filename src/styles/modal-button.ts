@@ -17,5 +17,11 @@ export const ModalButtons = styled.div`
         font-size: 15px;
         border-radius: 6px;
         cursor: pointer;
+        transition: 20ms
+    }
+
+    && button:hover {
+        transform: scale(1.05);
+        opacity: 0.5;
     }
 `;
