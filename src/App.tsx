@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TopBar from './components/TopBar';
 import MDOReport from './pages/reports/MDOReport';
 import GeneralReport from './pages/reports/GeneralReport';
+import ContactsPage from './pages/contacts/ContactsPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path = "/" element = {<Home/>}/>
           <Route path = "/reports-mdo" element = {<MDOReport/>}/>
           <Route path = "/reports-general" element = {<GeneralReport/>}/>
+          <Route path = "/contacts-list" element = {<ContactsPage/>}/>
         </Routes>
       </BrowserRouter>
       </header>

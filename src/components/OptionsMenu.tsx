@@ -105,6 +105,12 @@ export default function CustomizedMenus() {
                 Relatório de Mão de Obra
             </MenuItem>
         </Link>
+        <Link href='/contacts-list'>
+            <MenuItem onClick={handleClose} disableRipple>
+                <ArchiveIcon />
+                Lista de contatos
+            </MenuItem>
+        </Link>
       </StyledMenu>
     </div>
   );

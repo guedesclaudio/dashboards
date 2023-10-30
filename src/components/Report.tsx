@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import Modal from 'react-modal';
 import { generateReport } from "../utils/generateReport";
-import { modalStyle } from "../styles/modalStyle";
-import { ModalLegend } from "../styles/legend-modal";
-import { ModalButtons } from "../styles/modal-button";
 import { getGeneralData } from "../utils/getDataToGeneralReport";
 import { IGeneralData } from "../contracts/generatalData";
 import { modalUtils } from "../utils/modalUtils";

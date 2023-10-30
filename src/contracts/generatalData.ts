@@ -13,4 +13,5 @@ export interface IGeneralData {
     tax: number;
     valueMeters: IItemData;
     associations: any;
+    contactsList: any;
 }

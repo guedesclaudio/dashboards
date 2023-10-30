@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { requests } from "../../api";
 import ReportBox from "../../components/ReportBox";
 import { getGeneralData } from "../../utils/getDataToGeneralReport";
 import { IGeneralData } from "../../contracts/generatalData";
