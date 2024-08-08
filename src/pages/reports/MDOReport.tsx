@@ -13,7 +13,7 @@ function MDOReport() {
       if (!value?.c[11]?.v) return;
       const date = (value?.c[11]?.v).toString().replace(/[Date()]/gi,"");
       const dateList = date.split(",")
-      const dateOk = `${dateList[2]}/${dateList[1]}/${dateList[0]}`
+      const dateOk = `${dateList[2]}/${dateList[1] + 1}/${dateList[0]}`
       return mdo[dateOk] = value?.c[12]?.f
     });
     let message = '';
